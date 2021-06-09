@@ -23,11 +23,7 @@ body {
     padding:0;
     margin:0;
 
-    max-width: 32rem;
-    width: 32rem;
-    min-width: 32rem;
-
-    height: 100%;
+    width: calc(100% - 24rem);
 
     overflow: hidden;
 
@@ -52,9 +48,11 @@ body {
 
 .navbar-item {
     color: var(--text);
+
+    font-size: 2ch;
     
     margin: 0;
-    padding: .25rem;
+    padding: .5rem;
 }
 .navbar-item:hover {
     background: var(--bg2);
