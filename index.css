@@ -68,6 +68,8 @@ body {
 }
 .navbar-item:hover {
     background: var(--bg3);
+
+    text-decoration: none;
 }
 .selected {
     background: var(--bg2);
