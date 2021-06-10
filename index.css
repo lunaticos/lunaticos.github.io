@@ -96,4 +96,8 @@ p {
 a {
     color: var(--highlight);
     margin: 1rem;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
 }
