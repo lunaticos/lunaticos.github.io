@@ -8,7 +8,7 @@ const filterxss = (value) => {
     return value.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;");
 }
 
-const domains = {
+var domains = {
     backend: 'https://lunaticos-backend.lgr.workers.dev',
     frontend: 'https://lunaticos.github.io',
 }
@@ -68,12 +68,14 @@ const appInit = async () => {
     console.log(postbody)
 
     // Manda o payload para o servidor
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", domains.backend + '/postar', false);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify(postbody));
-
-    var atividade = JSON.parse(xhr.response);
+    const rawResponse = await fetch(domains.backend + '/postar', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(postbody)
+    });
+    const atividade = await rawResponse.json();
 
     // Muda o icone e texto do loading, e também redireciona para a atividade depois de 3s
     document.getElementsByClassName('loading-icon')[0].src = "/img/success.svg";
