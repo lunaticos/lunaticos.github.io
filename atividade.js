@@ -43,6 +43,8 @@ const appInit = async () => {
 
         <p id="ativ_owner"></p>
 
+        <p>Copio é gay!</p>
+
         <div class="division"></div>
 
         <textarea readonly id="ativ_content"></textarea>
