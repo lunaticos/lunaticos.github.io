@@ -198,6 +198,11 @@ button:hover {
     background: var(--highlight);
 }
 
+img {
+    max-width: calc(100% - 2rem);
+    margin: 1rem;
+}
+
 /* PageAlert */
 .alertmask {
     background: rgba(0, 0, 0, 0.75);

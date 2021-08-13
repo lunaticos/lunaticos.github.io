@@ -52,6 +52,18 @@ const appInit = async () => {
         </ativtext>
     `;
 
+    // Transforma os links em imagens //
+    var contentSplit = atividade.content.split(/ |\n/);
+
+    contentSplit.forEach((word, index) => {
+        if (
+            (word.startsWith('https://cdn.discordapp.com') && (word.endsWith('.png') || word.endsWith('.jpg')))
+            || (word.startsWith('https://media.discordapp.net') && (word.endsWith('.png') || word.endsWith('.jpg')))
+        ) {
+            atividade.content = atividade.content.replace(word, `<img src="${word}" onclick="window.open('${word}')">`);
+            console.log(word);
+        }
+    });
 
     // Muda o conteudo da pagina para a var contents;
     console.log(contents)
@@ -64,7 +76,9 @@ const appInit = async () => {
     document.getElementById('ativ_owner').innerText = atividade.owner + ' - ' + atividade.points + ' Pontos ';
 
     // Adiciona conteudo da atividade para a pagina
-    document.getElementById('ativ_content').innerText = atividade.content;
+    var lineRegex = /\n/gi;
+    console.log(atividade.content.replaceAll(lineRegex, '<br>'))
+    document.getElementById('ativ_content').innerHTML = atividade.content.replaceAll(/\n/gi, '<br>');
 
 }
 
