@@ -47,8 +47,9 @@ const appInit = async () => {
 
         <div class="division"></div>
 
-        <textarea readonly id="ativ_content"></textarea>
-
+        <ativtext>
+        <span id="ativ_content"></span>
+        </ativtext>
     `;
 
 
