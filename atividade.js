@@ -56,13 +56,24 @@ const appInit = async () => {
     var contentSplit = atividade.content.split(/ |\n/);
 
     contentSplit.forEach((word, index) => {
-        if (
-            (word.startsWith('https://cdn.discordapp.com') && (word.endsWith('.png') || word.endsWith('.jpg')))
-            || (word.startsWith('https://media.discordapp.net') && (word.endsWith('.png') || word.endsWith('.jpg')))
-        ) {
-            atividade.content = atividade.content.replace(word, `<img src="${word}" onclick="window.open('${word}')">`);
-            console.log(word);
-        }
+        // Dentro de função por causa do return;
+        ((word, index)=>{
+            if (
+                (word.startsWith('https://cdn.discordapp.com') && (word.endsWith('.png') || word.endsWith('.jpg')))
+                || (word.startsWith('https://media.discordapp.net') && (word.endsWith('.png') || word.endsWith('.jpg')))
+            ) {
+                atividade.content = atividade.content.replace(word, `<img src="${word}" onclick="window.open('${word}')">`);
+                console.log(word);
+            
+                // Se ja foi identificado o tipo do link, não tentar identificar outros tipos
+                return;
+            }
+
+            if (word.startsWith('https://') || word.startsWith('http://')) {
+                atividade.content = atividade.content.replace(word, `<a style="padding:0; margin:0;" href="#" onclick="window.open('${word}')">${word}</a>`);
+                console.log(word);
+            }
+        })(word, index);
     });
 
     // Muda o conteudo da pagina para a var contents;
